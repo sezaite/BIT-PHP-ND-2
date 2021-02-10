@@ -10,16 +10,11 @@ echo strlen($vardas) > strlen($pavarde) ? $pavarde : $vardas;
 
 echo '<br><br><br>--ANTRA UZDUOTIS--<br><br><br>';
 
-
 echo strtoupper($vardas) . " " . strtolower($pavarde); 
 
 echo '<br><br><br>--TRECIA UZDUOTIS--<br><br><br>';
 
 echo substr($vardas, 0, 1) . substr($pavarde, 0, 1);
-
-//arba
-echo '<br>';
-echo $vardas[0] . $pavarde[0];
 
 //arba pagal uzduoti:
 echo '<br>';
@@ -27,8 +22,6 @@ $trecias = $vardas[0] . $pavarde[0];
 echo $trecias;
 
 echo '<br><br><br>--KETVIRTA UZDUOTIS--<br><br><br>';
-
-// Sukurti du kintamuosius. Jiems priskirti savo mylimo aktoriaus vardą ir pavardę kaip stringus. Sukurti trečią kintamąjį ir jam priskirti stringą, sudarytą iš trijų paskutinių vardo ir pavardės kintamųjų raidžių. Jį atspausdinti.
 
 $trecias = substr($vardas, -3) . substr($pavarde, -3);
 echo $trecias;
@@ -52,7 +45,6 @@ echo 'is viso a raidziu: ' . preg_match_all($regexas, $stringas);
 echo '<br>';
 
 //viena eilute:
-
 echo 'is viso a raidziu: ' . preg_match_all("/[a]/i", 'An American in Paris');
 
 echo '<br><br><br>--SEPTINTA UZDUOTIS--<br><br><br>'; 
@@ -61,19 +53,17 @@ $filmas1 ='An American in Paris';
 $filmas2 = "Breakfast at Tiffany's";
 $filmas3 =  '2001: A Space Odyssey';
 $filmas4 = "It's a Wonderful Life";
-$patterns = '/[aeiuoy]/i';
-$replace = '';
 
 $filmai = array($filmas1, $filmas2, $filmas3, $filmas4);
 for ($i = 0; $i < count($filmai); $i++){
-    echo preg_replace($patterns, $replace, $filmai[$i]);
+    echo preg_replace("/[aeiuoy]/i", '', $filmai[$i]);
     echo '<br>';
 }
 
 // $filmas = 'filmas';
 // for ($i = 1; $i < 5; $i++){
 //     $filmas = $$filmas.$i;
-//     echo preg_replace($patterns, $replace, $filmas); 
+//     echo preg_replace("/[aeiuoy]/i", '', $filmas); 
 // };
 
 echo '<br><br><br>--ASTUNTA UZDUOTIS--<br><br><br>'; 
@@ -98,7 +88,7 @@ $antrosArraySkaiciai = 0;
 
 echo 'pirmojo stringo zodziai, sudaryti is penkiu raidziu arba trumpesni: <br>';
 for ($i = 0; $i < count($pirmasArray); $i++){
-    if (strlen($pirmasArray[$i]) <= 5){
+    if (mb_strlen($pirmasArray[$i]) <= 5){
         echo $pirmasArray[$i] . '<br>';
         $pirmosArraySkaiciai++;
     } 
@@ -108,7 +98,7 @@ echo "- is viso $pirmosArraySkaiciai zodziu <br><br>";
 echo 'antrojo stringo zodziai, sudaryti is penkiu raidziu arba trumpesni: <br>';
 
 for ($i = 0; $i < count($antrasArray); $i++){
-    if (strlen($antrasArray[$i]) <= 5){
+    if (mb_strlen($antrasArray[$i]) <= 5){
         echo $antrasArray[$i] . '<br>';
         $antrosArraySkaiciai++;
     } 
@@ -116,10 +106,13 @@ for ($i = 0; $i < count($antrasArray); $i++){
 
 echo "- is viso $antrosArraySkaiciai zodziai <br>";
 
+//kaip pagauti kableli??
+
 echo '<br><br><br>--DESIMTA UZDUOTIS--<br><br><br>'; 
 
 echo chr(rand(97, 122)) . chr(rand(97, 122)) . chr(rand(97, 122));
-// echo str_repeat(chr(rand(97, 122)), 3);
+
+// echo str_repeat(chr(rand(97, 122)), 3); ???
 
 echo '<br><br><br>--VIENUOLIKTA UZDUOTIS--<br><br><br>'; 
 
@@ -127,7 +120,7 @@ $pirmasStringas = "Don't Be a Menace to South Central While Drinking Your Juice 
 $antrasStringas = "Tik nereikia gąsdinti Pietų Centro, geriant sultis pas save kvartale";
 
 $bendrasArray = array_merge(explode(" ", $pirmasStringas), explode(" ", $antrasStringas));
-$naujasArray = array();
+$naujasArray = array(); //paklausti ar reikia deklaruoti cia
 
 
 while (count($naujasArray) < 10) {
@@ -137,7 +130,6 @@ while (count($naujasArray) < 10) {
         }
     }
 
-$galutinisStringas = implode(" ", $naujasArray);
-echo $galutinisStringas;
+echo implode(" ", $naujasArray);
 
 ?>
